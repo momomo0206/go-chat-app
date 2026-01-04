@@ -61,7 +61,7 @@ func (r *RoomRepository) CreateRoom(ctx context.Context, room *Room) (*Room, err
 		).Scan(
 			&room.ID,
 			&room.CreatedAt,
-			room.ExpiresAt,
+			&room.ExpiresAt,
 		)
 	} else {
 		// Regular rooms get default 24-hour expiration
