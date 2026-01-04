@@ -40,6 +40,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
+    volumes:
+      - ./client:/app
+      - /app/node_modules # コンテナ内のnode_modulesを上書きさせない
+    environment:
+      - CHOKIDAR_USEPOLLING=true # ファイル変更検知を確実にする
     depends_on:
       - server
     restart: unless-stopped
