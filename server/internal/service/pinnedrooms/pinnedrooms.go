@@ -92,13 +92,14 @@ func (s *PinnedRoomsService) RefreshPinnedRooms(ctx context.Context) error {
 
 // CheckAndRefreshPinnedRooms checks if pinned rooms need to be created
 func (s *PinnedRoomsService) CheckAndRefreshPinnedRooms(ctx context.Context) error {
+	roomNames := []string{"Discord Discussion", "Tech Talk"}
 	count, err := s.roomRepo.CountPinnedRooms(ctx)
 	if err != nil {
 		return fmt.Errorf("count pinned rooms: %w", err)
 	}
 
 	// If we don't have 3 pinned rooms, create them
-	if count < 3 {
+	if count < len(roomNames) {
 		log.Printf("Only %d pinned rooms found, creating new ones...", count)
 		return s.RefreshPinnedRooms(ctx)
 	}

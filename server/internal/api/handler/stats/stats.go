@@ -98,7 +98,7 @@ func (h *StatsHandler) GiveUpvote(w http.ResponseWriter, r *http.Request) {
 
 	// Parse request body
 	var req struct {
-		ToUserID string `json:"toUserId"`
+		ToUserID string `json:"to_user_id"`
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
